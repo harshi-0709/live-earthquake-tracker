@@ -11,11 +11,12 @@ function getEarthquakes(){
         let mag = data.features[i].properties.mag;
         console.log(data.features[i].properties.mag);
         console.log(data.features[i].properties.place);
-        console.log(data.features[i].properties.time);
+        let timestamp = data.features[i].properties.time;
+        let time = new Date(timestamp).toLocaleString();
         console.log(data.features[i].geometry.coordinates[2]);
         let longitude=data.features[i].geometry.coordinates[0];
         let latitude=data.features[i].geometry.coordinates[1];
-        L.marker([latitude, longitude]).addTo(earthquakes) .bindPopup(` Location:${data.features[i].properties.place} Magnitude: ${data.features[i].properties.mag}`);;
+        L.marker([latitude, longitude]).addTo(earthquakes) .bindPopup(` Location:${data.features[i].properties.place} Magnitude: ${data.features[i].properties.mag} Time:${time}`);
         var circle = L.circle([latitude, longitude], {
                 color: 'red',
                 fillColor: '#f03',
